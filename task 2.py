@@ -3,9 +3,12 @@ from random import randrange
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtWidgets, uic
+import sys
+from PyQt5 import QtWidgets
+import UI
 
 
-class App(QtWidgets.QWidget):
+class Circle(QtWidgets.QWidget, UI.Ui_Form):
     def __init__(self):
         super().__init__()
         uic.loadUi("UI.ui", self)
@@ -28,8 +31,17 @@ class App(QtWidgets.QWidget):
         painter.drawEllipse(self.x - r, self.y - r, 2 * r, 2 * r)
 
 
+def except_hook(cls, exception, traceback):
+    sys.__excepthook__(cls, exception, traceback)
+
+
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    start_window = Circle()
+    start_window.show()
+    sys.excepthook = except_hook
+    app.exec_()
+
+
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = App()
-    window.show()
-    app.exit(app.exec())
+    main()
