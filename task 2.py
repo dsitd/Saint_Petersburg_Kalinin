@@ -26,7 +26,7 @@ class Circle(QtWidgets.QWidget, UI.Ui_Form):
         painter.end()
 
     def circle(self, painter):
-        painter.setBrush(QColor(randrange(0, 255), randrange(0, 255), randrange(0, 255)))
+        painter.setBrush(QColor('yellow'))
         r = randrange(10, self.width() // 5)
         painter.drawEllipse(self.x - r, self.y - r, 2 * r, 2 * r)
 
